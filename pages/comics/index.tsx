@@ -11,13 +11,11 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   );
 
   const response = await fetch(
-    `http://gateway.marvel.com/v1/public/comics?ts=${time}&apikey=${
-      process.env.REACT_APP_MARVEL_PUBLIC_KEY
-    }&hash=${hash}&limit=100&offset=${(page - 1) * 100}`
+    `http://gateway.marvel.com/v1/public/series?ts=${time}&apikey=${process.env.REACT_APP_MARVEL_PUBLIC_KEY}&hash=${hash}`
   )
     .then((data) => data.json())
-    .then((response) => response.data.results);
-
+    .then((response) => response);
+  console.log(response);
   return {
     props: {
       data: response,
