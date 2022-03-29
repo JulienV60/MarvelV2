@@ -12,7 +12,7 @@ export default function EventForCharacterDetail(props: any) {
     )
       .then((response) => response.json())
       .then((result) => result.data);
-    console.log(result[0]);
+
     setComics(result[0].thumbnail.path);
   }
 

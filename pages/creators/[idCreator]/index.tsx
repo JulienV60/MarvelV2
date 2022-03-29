@@ -23,6 +23,5 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 export default function CreatorsDetails({ data }: any): JSX.Element {
-  console.log(data);
   return <></>;
 }

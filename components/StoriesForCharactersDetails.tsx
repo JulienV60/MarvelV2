@@ -12,7 +12,7 @@ export default function StoriesForCharactersDetails(props: any) {
     )
       .then((response) => response.json())
       .then((result) => result.data);
-    console.log(result[0]);
+
     setStories(result[0].thumbnail.image);
   }
 

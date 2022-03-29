@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function CharacterDetails({ data }: any): JSX.Element {
-  console.log(data);
   return (
     <Layout>
       <div className="container-fluid">

@@ -27,7 +27,5 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 export default function Comics({ data, pageSelected }: any): JSX.Element {
-  console.log(pageSelected);
-  console.log(data);
   return <></>;
 }

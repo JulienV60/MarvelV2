@@ -23,6 +23,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function Series({ data }: any): JSX.Element {
-  console.log(data);
   return <></>;
 }
