@@ -3,7 +3,6 @@ import ComicsForCharacterDetail from "../../../components/ComicsForCharacterDeta
 import EventForCharacterDetail from "../../../components/EventForCharacterDetail";
 import Layout from "../../../components/Layout";
 import StoriesForCharactersDetails from "../../../components/StoriesForCharactersDetails";
-import Characters from "../../../Characters.json";
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await fetch(
     `http://localhost:3000/api/call/detail/${context?.params?.idCharacter}?rubrique=characters`
@@ -17,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 const characters = [{ Element }];
-console.log(Characters);
+
 export default function CharacterDetails({ data }: any): JSX.Element {
   console.log(data);
   return (
