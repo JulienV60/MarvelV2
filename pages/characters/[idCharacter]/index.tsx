@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import ComicsForCharacterDetail from "../../../components/ComicsForCharacterDetail";
 import EventForCharacterDetail from "../../../components/EventForCharacterDetail";
 import Layout from "../../../components/Layout";
+import StoriesForCharactersDetails from "../../../components/StoriesForCharactersDetails";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await fetch(
