@@ -6,7 +6,7 @@ export default function Home() {
     function myHandler(e: any) {
       document.getElementById("totoimage").style.opacity = "50";
     }
-  });
+  }, []);
   return (
     <div>
       <Link href="/home">

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import md5 from "md5";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import CardCharactersPage from "../../components/CardCharactersPage";
 import Layout from "../../components/Layout";
+
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let page = 0;
   if (context?.query?.page <= "1") {
