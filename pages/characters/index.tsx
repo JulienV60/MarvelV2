@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import CardCharactersPage from "../../components/CardCharactersPage";
 import Layout from "../../components/Layout";
-
+import Datacharacters from ".././../Characters.json";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let page = 0;
   if (context?.query?.page <= "1") {
@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 export default function Characters({ data, pageSelected }: any) {
-
   return (
     <>
       <Layout>
@@ -31,7 +30,7 @@ export default function Characters({ data, pageSelected }: any) {
           <a> Next </a>
         </Link>
         <div className="container-fluid">
-          <div className="arow">
+          {/* <div className="arow">
             {data.data.map((character: any) => {
               return (
                 <CardCharactersPage
@@ -42,7 +41,7 @@ export default function Characters({ data, pageSelected }: any) {
                 />
               );
             })}
-          </div>
+          </div> */}
         </div>
       </Layout>
     </>
