@@ -11,20 +11,16 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     page = parseInt(context?.query?.page?.toString());
   }
 
-  const response = await fetch(
-    `http://localhost:3000/api/call/characters?page=${page}`
-  );
-  const result = await response.json();
-
   return {
     props: {
-      data: result,
+      data: "result",
       pageSelected: page,
     },
   };
 };
 
 export default function Characters({ data, pageSelected }: any) {
+
   return (
     <>
       <Layout>

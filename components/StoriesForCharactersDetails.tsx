@@ -12,12 +12,15 @@ export default function StoriesForCharactersDetails(props: any) {
     )
       .then((response) => response.json())
       .then((result) => result.data);
+console.log("result",result)
+     if (result !== undefined){
+      setStories(result[0].thumbnail.path);
+    }
 
-    setStories(result[0].thumbnail.image);
   }
 
   getComics();
-
+console.log(stories)
   return (
     <div className="col-4">
       <Link href="#">

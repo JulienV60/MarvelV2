@@ -1,12 +1,17 @@
+import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
+import { getDatabase } from "../src/database";
+
 export default function Home() {
   React.useEffect(() => {
+
     document.getElementById("toto").addEventListener("ended", myHandler, false);
     function myHandler(e: any) {
       document.getElementById("totoimage").style.opacity = "50";
     }
   }, []);
+
   return (
     <div>
       <Link href="/home">

@@ -12,7 +12,7 @@ export default function ComicsForCharacterDetail(props: any) {
     )
       .then((response) => response.json())
       .then((result) => result.data);
-    setComics(result[0].thumbnail.path);
+    setComics(result[0]?.thumbnail?.path);
   }
 
   getComics();
