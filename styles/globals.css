@@ -193,6 +193,7 @@ video {
 }
 .col-3 {
   padding: 0;
+  padding-left: 1rem;
   width: 10rem;
   padding-top: 1rem;
 }
