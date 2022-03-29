@@ -9,7 +9,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       `${process.env.REACT_APP_MARVEL_PRIVATE_KEY}` +
       `${process.env.REACT_APP_MARVEL_PUBLIC_KEY}`
   );
-
   const response = await fetch(
     `http://gateway.marvel.com/v1/public/characters?ts=${time}&apikey=${
       process.env.REACT_APP_MARVEL_PUBLIC_KEY

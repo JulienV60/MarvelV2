@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import CardCharactersPage from "../../components/CardCharactersPage";
 import Layout from "../../components/Layout";
+import dataCaracters from "../../Characters.json";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let page = 0;
   if (context?.query?.page <= "1") {
@@ -12,20 +13,16 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     page = parseInt(context?.query?.page?.toString());
   }
 
-  const response = await fetch(
-    `http://localhost:3000/api/call/characters?page=${page}`
-  );
-  const result = await response.json();
-
   return {
     props: {
-      data: result,
+      data: "result",
       pageSelected: page,
     },
   };
 };
 
 export default function Characters({ data, pageSelected }: any) {
+
   return (
     <>
       <Layout>

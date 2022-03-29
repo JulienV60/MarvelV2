@@ -10,10 +10,12 @@ export default function EventForCharacterDetail(props: any) {
     const result = await fetch(
       `http://localhost:3000/api/call/detail/${idEvent}?rubrique=events`
     )
-      .then((response) => response.json())
-      .then((result) => result.data);
+      .then((response) => response?.json())
+      .then((result) => result?.data);
 
-    setComics(result[0].thumbnail.path);
+    if (result !== undefined){
+      setComics(result[0]?.thumbnail?.path);
+    }
   }
 
   getComics();
