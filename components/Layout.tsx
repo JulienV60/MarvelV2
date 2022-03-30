@@ -21,71 +21,44 @@ export default function Layout({ children }: any) {
   }, []);
 
   async function getCharaters() {
-    const result = await fetch(`/api/call/characters?random=true || null`).then(
+    const result = await fetch(`/api/call/characters`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataCharacters(data);
+    console.log("data",result.data)
+    setdataCharacters(result.data);
   }
 
   async function getComics() {
-    const result = await fetch(`/api/call/comics?random=true || null`).then(
+    const result = await fetch(`/api/call/comics`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataComics(data);
+
+    setdataComics(result.data);
+
   }
   async function getEvents() {
-    const result = await fetch(`/api/call/events?random=true || null`).then(
+    const result = await fetch(`/api/call/events`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataEvents(data);
+    setdataEvents(result.data);
   }
   async function getCreators() {
-    const result = await fetch(`/api/call/creators?random=true || null`).then(
+    const result = await fetch(`/api/call/creators`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataCreators(data);
+    setdataCreators(result.data);
   }
   async function getSeries() {
-    const result = await fetch(`/api/call/series?random=true || null`).then(
+    const result = await fetch(`/api/call/series`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataSeries(data);
+    setdataSeries(result.data);
   }
   async function getStories() {
-    const result = await fetch(`/api/call/stories?random=true || null`).then(
+    const result = await fetch(`/api/call/stories`).then(
       (response) => response.json()
     );
-    const data = [];
-    for (let index = 0; index < 4; index++) {
-      const random = Math.floor(Math.random() * 100);
-      data.push(result.data[random]);
-    }
-    setdataStories(data);
+    setdataStories(result.data);
   }
 
   return (
@@ -106,10 +79,11 @@ export default function Layout({ children }: any) {
             </Link>
             <div className="row">
               {dataCharacters.map((element) => {
+
                 return (
                   <div key={element.name} className="col-3">
                     <div className="card">
-                      {element.thumbnail.path
+                      {element.path
                         .split("/")
                         .includes("image_not_available") === true ? (
                         <img src="/7z6qt753qe031.webp"></img>
@@ -117,11 +91,10 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-                          alt={`${element.thumbnail.path}`}
+                          src={`${element.path}`}
+                          alt={`${element.path}`}
                         ></img>
                       )}
-
                       <div className="card-body">
                         <h5 className="card-title">{element.name}</h5>
                       </div>
@@ -143,7 +116,7 @@ export default function Layout({ children }: any) {
                 return (
                   <div key={element.title} className="col-3">
                     <div className="card">
-                      {element.thumbnail.path
+                      {element.path
                         .split("/")
                         .includes("image_not_available") === true ? (
                         <img src="/7z6qt753qe031.webp"></img>
@@ -151,7 +124,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.thumbnail.path}.jpg`}
+                          src={`${element.path}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -176,7 +149,7 @@ export default function Layout({ children }: any) {
                 return (
                   <div key={element.firstName} className="col-3">
                     <div className="card">
-                      {element.thumbnail.path
+                      {element.path
                         .split("/")
                         .includes("image_not_available") === true ? (
                         <img src="/7z6qt753qe031.webp"></img>
@@ -184,7 +157,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.thumbnail.path}.jpg`}
+                          src={`${element.path}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -204,7 +177,31 @@ export default function Layout({ children }: any) {
             <Link href="/events">
               <a>All Events</a>
             </Link>
-            <div className="row"></div>
+            <div className="row">
+              {dataEvents.map((element) => {
+                return (
+                  <div key={element.title} className="col-3">
+                    <div className="card">
+                      {element.path
+                        .split("/")
+                        .includes("image_not_available") === true ? (
+                        <img src="/7z6qt753qe031.webp"></img>
+                      ) : (
+                        <img
+                          className="card-img-top"
+                          style={{ height: "12rem" }}
+                          src={`${element.path}`}
+                          alt="Card image cap"
+                        ></img>
+                      )}
+                      <div className="card-body">
+                        <h5 className="card-title">{element.title}</h5>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="dropdown">
@@ -218,7 +215,7 @@ export default function Layout({ children }: any) {
                 return (
                   <div key={element.title} className="col-3">
                     <div className="card">
-                      {element.thumbnail.path
+                      {element.path
                         .split("/")
                         .includes("image_not_available") === true ? (
                         <img src="/7z6qt753qe031.webp"></img>
@@ -226,7 +223,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.thumbnail.path}.jpg`}
+                          src={`${element.path}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -246,7 +243,31 @@ export default function Layout({ children }: any) {
             <Link href="/stories">
               <a>All Stories</a>
             </Link>
-            <div className="row"></div>
+            <div className="row">
+              {dataStories.map((element) => {
+                return (
+                  <div key={element.title} className="col-3">
+                    <div className="card">
+                      {element.path
+                        .split("/")
+                        .includes("image_not_available") === true ? (
+                        <img src="/7z6qt753qe031.webp"></img>
+                      ) : (
+                        <img
+                          className="card-img-top"
+                          style={{ height: "12rem" }}
+                          src="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+                          alt="Card image cap"
+                        ></img>
+                      )}
+                      <div className="card-body">
+                        <h5 className="card-title">{element.title}</h5>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

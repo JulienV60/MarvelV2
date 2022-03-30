@@ -26,7 +26,7 @@ export default function Home() {
               poster="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DA2E198288BFCA56AB53340211B38DE7134E40E4521EDCAFE6FFB8CD69250DE9/scale?width=2880&aspectRatio=1.78&format=jpeg"
             >
               <source
-                src="https://vod-bgc-eu-west-1.media.dssott.com/bgui/ps01/disney/bgui/2021/11/04/1636056889-marvel.mp4"
+                src="/1636056889-marvel.mp4"
                 type="video/mp4"
                 id="toto"
               ></source>
