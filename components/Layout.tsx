@@ -21,42 +21,41 @@ export default function Layout({ children }: any) {
   }, []);
 
   async function getCharaters() {
-    const result = await fetch(`/api/call/characters`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/characters`).then((response) =>
+      response.json()
     );
-    console.log("data",result.data)
+    console.log("data", result.data);
     setdataCharacters(result.data);
   }
 
   async function getComics() {
-    const result = await fetch(`/api/call/comics`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/comics`).then((response) =>
+      response.json()
     );
 
     setdataComics(result.data);
-
   }
   async function getEvents() {
-    const result = await fetch(`/api/call/events`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/events`).then((response) =>
+      response.json()
     );
     setdataEvents(result.data);
   }
   async function getCreators() {
-    const result = await fetch(`/api/call/creators`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/creators`).then((response) =>
+      response.json()
     );
     setdataCreators(result.data);
   }
   async function getSeries() {
-    const result = await fetch(`/api/call/series`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/series`).then((response) =>
+      response.json()
     );
     setdataSeries(result.data);
   }
   async function getStories() {
-    const result = await fetch(`/api/call/stories`).then(
-      (response) => response.json()
+    const result = await fetch(`/api/call/stories`).then((response) =>
+      response.json()
     );
     setdataStories(result.data);
   }
@@ -79,7 +78,6 @@ export default function Layout({ children }: any) {
             </Link>
             <div className="row">
               {dataCharacters.map((element) => {
-
                 return (
                   <div key={element.name} className="col-3">
                     <div className="card">
@@ -91,8 +89,8 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.path}`}
-                          alt={`${element.path}`}
+                          src={`${element.path}.${element.extension}`}
+                          alt=""
                         ></img>
                       )}
                       <div className="card-body">
@@ -124,7 +122,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.path}`}
+                          src={`${element.path}.${element.extension}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -157,7 +155,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.path}`}
+                          src={`${element.path}.${element.extension}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -190,7 +188,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.path}`}
+                          src={`${element.path}.${element.extension}`}
                           alt="Card image cap"
                         ></img>
                       )}
@@ -223,7 +221,7 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.path}`}
+                          src={`${element.path}.${element.extension}`}
                           alt="Card image cap"
                         ></img>
                       )}
