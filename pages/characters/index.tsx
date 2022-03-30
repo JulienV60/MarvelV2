@@ -15,17 +15,30 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 
   const mongodb = await getDatabase();
-  const dataCharacters = await mongodb.db().collection("Characters").find().toArray();
+  const dataCharacters = await mongodb
+    .db()
+    .collection("Characters")
+    .find()
+    .toArray();
 
   const tab = [];
   if (page === 1) {
     for (let index = 0; index < 100; index++) {
-      console.log(dataCharacters[index])
-      tab.push({id: dataCharacters[index].id, name: dataCharacters[index].name, path: `${dataCharacters[index].thumbnail.path}.${dataCharacters[index].thumbnail.extension}`});
+      tab.push({
+        id: dataCharacters[index].id,
+        name: dataCharacters[index].name,
+        path: `${dataCharacters[index].thumbnail.path}`,
+        extension: `${dataCharacters[index].thumbnail.extension}`,
+      });
     }
   } else {
     for (let index = (page - 1) * 100 + 1; index < page * 100 + 1; index++) {
-      tab.push({id: dataCharacters[index].id, name: dataCharacters[index].name, path: `${dataCharacters[index].thumbnail.path}.${dataCharacters[index].thumbnail.extension}`});
+      tab.push({
+        id: dataCharacters[index].id,
+        name: dataCharacters[index].name,
+        path: `${dataCharacters[index].thumbnail.path}`,
+        extension: `${dataCharacters[index].thumbnail.extension}`,
+      });
     }
   }
 
@@ -46,14 +59,16 @@ export default function Characters({ data, pageSelected }: any) {
           <div className="arow">
             {dataJSON.map((character: any) => {
               return (
-                <Link key={character.id}  href={`/characters/${character.id}`}>
+                <Link key={character.id} href={`/characters/${character.id}`}>
                   <a>
-                <CardCharactersPage
-                  idCharacter={`${character.id}`}
-                  imgCard={`${character.path}`}
-                  nameCard={character.name}
-                  alt={`${character.path}`}
-                /></a></Link>
+                    <CardCharactersPage
+                      idCharacter={`${character.id}`}
+                      imgCard={`${character.path}.${character.extension}`}
+                      nameCard={character.name}
+                      alt={`${character.path}`}
+                    />
+                  </a>
+                </Link>
               );
             })}
           </div>
