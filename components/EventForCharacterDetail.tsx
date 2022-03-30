@@ -1,30 +1,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function EventForCharacterDetail(props: any) {
-  const [comics, setComics] = useState("");
-  const [affiche, setAffiche] = useState([]);
-
-  async function getComics() {
-    const idEvent = props.data.split("/")[6];
-    const result = await fetch(
-      `http://localhost:3000/api/call/detail/${idEvent}?rubrique=events`
-    )
-      .then((response) => response?.json())
-      .then((result) => result?.data);
-
-    if (result !== undefined){
-      setComics(result[0]?.thumbnail?.path);
-    }
-  }
-
-  getComics();
+export default function EventsForCharacterDetail(props: any) {
 
   return (
     <div className="col-4">
-      <Link href="#">
+      <Link href={`/events/${props.id}`}>
         <a>
-          <img src={`${comics}.jpg`} style={{ maxHeight: "250px" }} />
+          <img src={`${props.data}`} style={{ maxHeight: "350px" }} />
         </a>
       </Link>
     </div>

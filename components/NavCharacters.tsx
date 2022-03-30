@@ -1,11 +1,12 @@
-export default function NavCharacters(props:any) {
+export default function NavCharacters(props: any) {
+
   return (<>
     {
-      props.data.map((element:any) => {
+      (props.data)[0]?.map((element: any,index:number) => {
         return (
           <div key={element.name} className="col-3">
             <div className="card">
-              {element.path
+              {element.thumbnail.path
                 .split("/")
                 .includes("image_not_available") === true ? (
                 <img src="/7z6qt753qe031.webp"></img>
@@ -13,7 +14,7 @@ export default function NavCharacters(props:any) {
                 <img
                   className="card-img-top"
                   style={{ height: "12rem" }}
-                  src={`${element.path}.${element.extension}`}
+                  src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
                   alt=""
                 ></img>
               )}
