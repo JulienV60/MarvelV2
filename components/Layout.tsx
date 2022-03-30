@@ -30,7 +30,7 @@ export default function Layout({ children }: any) {
     const result = await fetch(`/api/call/characters`).then((response) =>
       response.json()
     );
-    console.log("data", result.data);
+
     setdataCharacters(result.data);
   }
 
@@ -79,9 +79,10 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Characters</button>
           <div className="dropdown-content">
-            <Link href="/characters">
+            <Link href="/characters?page=1">
               <a>All Characters</a>
             </Link>
+
             <div className="row">
               <NavCharacters data={dataCharacters} />
             </div>
@@ -90,7 +91,7 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Comics</button>
           <div className="dropdown-content">
-            <Link href="/comics">
+            <Link href="/comics?page=1">
               <a>All Comics</a>
             </Link>
             <div className="row">
@@ -101,7 +102,7 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Creators</button>
           <div className="dropdown-content">
-            <Link href="/creators">
+            <Link href="/creators?page=1">
               <a>All Creators</a>
             </Link>
             <div className="row">
@@ -112,7 +113,7 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Events</button>
           <div className="dropdown-content">
-            <Link href="/events">
+            <Link href="/events?page=1">
               <a>All Events</a>
             </Link>
             <div className="row">
@@ -123,7 +124,7 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Series</button>
           <div className="dropdown-content">
-            <Link href="/series">
+            <Link href="/series?page=1">
               <a>All Series</a>
             </Link>
             <div className="row">
@@ -134,7 +135,7 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Stories</button>
           <div className="dropdown-content">
-            <Link href="/stories">
+            <Link href="/stories?page=1">
               <a>All Stories</a>
             </Link>
             <div className="row">
