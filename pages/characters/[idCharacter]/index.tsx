@@ -4,20 +4,44 @@ import EventForCharacterDetail from "../../../components/EventForCharacterDetail
 import Layout from "../../../components/Layout";
 import StoriesForCharactersDetails from "../../../components/StoriesForCharactersDetails";
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await fetch(
-    `http://localhost:3000/api/call/detail/${context?.params?.idCharacter}?rubrique=characters`
-  )
-    .then((response) => response.json())
-    .then((result) => result.data.results);
+  const id = context?.params?.idCharacter;
+  const dataCharacters = require("../../../Characters.json");
+  const dataComics = require("../../../Comics.json")
+
+  //data character
+  let character;
+  const comics: any = [];
+  const dataComicsPath:any = [];
+
+    dataCharacters.filter((element: any) => {
+      if ((element[0].id).toString() === id) {
+        character = element[0];
+        element[0].comics.items.map((comic: any) => {
+          const idComic = comic.resourceURI.split("/")[6];
+          dataComics.filter((datacomic: any) => {
+            if ((datacomic[0].id).toString() === idComic) {
+              dataComicsPath.push(datacomic[0]);
+            }
+          })
+        })
+      }
+    })
+
+  //data comics
+
+  //console.log(dataComicsPath)
+
+
   return {
     props: {
-      data: response,
+      datacharac: character,
+      dataComic: dataComicsPath
     },
   };
 };
 
-export default function CharacterDetails({ data }: any): JSX.Element {
-  console.log(data);
+export default function CharacterDetails({ datacharac, dataComic }: any): JSX.Element {
+  console.log(dataComic)
   return (
     <Layout>
       <div className="container-fluid">
@@ -27,14 +51,11 @@ export default function CharacterDetails({ data }: any): JSX.Element {
             style={{ width: "100%", height: "30rem", alignContent: "center" }}
           >
             <div className="col-3 mx-auto">
-              <img
-                style={{ width: "400px" }}
-                src={`${data[0].thumbnail.path}.${data[0].thumbnail.extension}`}
-              />
+              <img style={{ width: "400px" }}src={`${datacharac[0].thumbnail.path}.${datacharac[0].thumbnail.extension}`}/>
             </div>
             <div className="col-4 mx-auto">
-              <h1>{data[0].name}</h1>
-              <p>{data[0].description}</p>
+              <h1>{datacharac.name}</h1>
+              <p>{datacharac.description}</p>
               <br></br>
             </div>
           </div>
@@ -43,44 +64,12 @@ export default function CharacterDetails({ data }: any): JSX.Element {
         <section>
           <h2>Comics :</h2>
           <div className="row overflow-auto" style={{ height: "25rem" }}>
-            {data[0].comics.items.map((element: any) => {
-              return (
-                <ComicsForCharacterDetail
-                  key={element.name}
-                  data={element.resourceURI}
-                />
-              );
+            {dataComic.map((element:any) => {
+              return <ComicsForCharacterDetail key={element.title} data={element.thumbnail.path} />;
             })}
           </div>
         </section>
         <br></br>
-        <section>
-          <h2>Events :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
-            {data[0].events.items.map((element: any) => {
-              return (
-                <EventForCharacterDetail
-                  key={element.title}
-                  data={element.resourceURI}
-                />
-              );
-            })}
-          </div>
-        </section>
-        <br></br>
-        <section>
-          <h2>Stories :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
-            {data[0].stories.items.map((element: any) => {
-              return (
-                <StoriesForCharactersDetails
-                  key={element.title}
-                  data={element.resourceURI}
-                />
-              );
-            })}
-          </div>
-        </section>
       </div>
     </Layout>
   );
