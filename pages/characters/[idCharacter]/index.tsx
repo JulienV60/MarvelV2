@@ -24,9 +24,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
 
   const arrayOfComics = await mongodb.db().collection("Comics").find({
-    'id': { $in: comicsId }
+    id: { $in: comicsId }
   }).toArray();
-
+console.log("test",arrayOfComics)
     // dataCharacters.filter((element: any) => {
     //   if ((element[0].id).toString() === id) {
     //     character = element[0];

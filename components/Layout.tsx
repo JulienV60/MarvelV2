@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import md5 from "md5";
+import NavCharacters from "./NavCharacters";
 
 export default function Layout({ children }: any) {
   const [dataCharacters, setdataCharacters] = useState<any[]>([]);
@@ -59,7 +60,7 @@ export default function Layout({ children }: any) {
     );
     setdataStories(result.data);
   }
-
+console.log(dataCharacters)
   return (
     <div>
       <div className="fakenav">
@@ -77,29 +78,7 @@ export default function Layout({ children }: any) {
               <a>All Characters</a>
             </Link>
             <div className="row">
-              {dataCharacters.map((element) => {
-                return (
-                  <div key={element.name} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt=""
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.name}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavCharacters data={dataCharacters} />
             </div>
           </div>
         </div>
