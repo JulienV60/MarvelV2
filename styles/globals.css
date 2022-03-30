@@ -195,7 +195,7 @@ video {
   padding: 0;
   padding-left: 0.9rem;
   width: 10rem;
-  padding-top: 1rem;
+  margin-top: 1rem;
 }
 .quatrecentquatre {
   background-image: url(https://64.media.tumblr.com/2233c2134f7b0d7354d5ace4649bfc55/tumblr_o4p5xbS9Un1qdw2puo1_1280.jpg);
@@ -204,4 +204,25 @@ video {
   height: 55rem;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(26, 29, 41);
+}
+.pagination ul {
+  height: 0.5rem;
+  margin-bottom: auto;
+}
+
+.pagination .page-link {
+  background-color: rgba(238, 23, 31, 1);
+  color: white;
+}
+
+.pagination .page-link:hover {
+  background-color: rgb(26, 29, 41);
+  color: white;
 }

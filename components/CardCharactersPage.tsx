@@ -11,8 +11,7 @@ export default function CardCharactersPage(props: any) {
         <a>
           <div className="col-3">
             <div className="card">
-              {props.imgCard.includes("image_not_available") === true ||
-              props.imgCard === null ? (
+              {props.imgCard.includes("image_not_available") === true ? (
                 <img
                   className="card-img-top"
                   style={{ height: "12rem" }}
@@ -22,8 +21,7 @@ export default function CardCharactersPage(props: any) {
                 <img
                   className="card-img-top"
                   style={{ height: "12rem" }}
-                  src={`${props.imgCard}.jpg`}
-                  alt=""
+                  src={`${props.imgCard}`}
                 ></img>
               )}
 

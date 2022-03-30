@@ -15,7 +15,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-const characters = [{ Element }];
 
 export default function CharacterDetails({ data }: any): JSX.Element {
   console.log(data);
@@ -30,7 +29,7 @@ export default function CharacterDetails({ data }: any): JSX.Element {
             <div className="col-3 mx-auto">
               <img
                 style={{ width: "400px" }}
-                src={`${data[0].thumbnail.path}.jpg`}
+                src={`${data[0].thumbnail.path}.${data[0].thumbnail.extension}`}
               />
             </div>
             <div className="col-4 mx-auto">
