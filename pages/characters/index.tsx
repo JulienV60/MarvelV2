@@ -14,31 +14,25 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     page = parseInt(context?.query?.page?.toString());
   }
 
-
-
   const tab = [];
   if (page === 1) {
     const mongodb = await getDatabase();
 
-    tab.push(await mongodb
-    .db()
-    .collection("Characters")
-    .find()
-    .limit(50)
-    .toArray());
-
+    tab.push(
+      await mongodb.db().collection("Characters").find().limit(50).toArray()
+    );
   } else {
-
     const mongodb = await getDatabase();
 
-    tab.push(await mongodb
-    .db()
-    .collection("Characters")
-    .find()
-    .skip((page-1)*50)
-    .limit(50)
-    .toArray());
-
+    tab.push(
+      await mongodb
+        .db()
+        .collection("Characters")
+        .find()
+        .skip((page - 1) * 50)
+        .limit(50)
+        .toArray()
+    );
   }
 
   return {
@@ -62,6 +56,7 @@ export default function Characters({ data, pageSelected }: any) {
                 <Link key={character.id} href={`/characters/${character.id}`}>
                   <a>
                     <CardCharactersPage
+                      id={`${character.id}`}
                       idCharacter={`${character.id}`}
                       imgCard={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                       nameCard={character.name}
