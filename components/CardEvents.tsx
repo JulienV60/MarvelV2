@@ -1,15 +1,14 @@
 import Link from "next/link";
-import error404 from "../pages/404";
 
-export default function CardCharactersPage(props: any) {
+export default function CardEvents(props: any) {
   return (
-    <div className="characterspage" id={props.id}>
+    <div className="comicspage" key={props.name} id={props.id}>
       <Link
         key={props.nameCard}
-        href={`http://localhost:3000/characters/${props.idCharacter}`}
+        href={`http://localhost:3000/events/${props.id}`}
       >
         <a>
-          <div key={props.name} id={props.id} className="col-3">
+          <div className="col-3" key={props.name} id={props.id}>
             <div className="card">
               {props.imgCard.includes("image_not_available") === true ? (
                 <img
