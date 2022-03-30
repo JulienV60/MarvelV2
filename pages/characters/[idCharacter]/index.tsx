@@ -51,7 +51,7 @@ export default function CharacterDetails({ datacharac, dataComic }: any): JSX.El
             style={{ width: "100%", height: "30rem", alignContent: "center" }}
           >
             <div className="col-3 mx-auto">
-              <img style={{ width: "400px" }}src={`${datacharac[0].thumbnail.path}.${datacharac[0].thumbnail.extension}`}/>
+              <img style={{ width: "400px" }}src={`${datacharac.thumbnail.path}.${datacharac.thumbnail.extension}`}/>
             </div>
             <div className="col-4 mx-auto">
               <h1>{datacharac.name}</h1>

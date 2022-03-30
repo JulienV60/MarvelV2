@@ -7,6 +7,7 @@ import Layout from "../../components/Layout";
 
 const dataCharacters = require("../../Characters.json");
 
+
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let page = 0;
   if (context?.query?.page <= "1") {
@@ -25,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       tab.push(dataCharacters[index]);
     }
   }
+
   return {
     props: {
       data: tab,
