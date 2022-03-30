@@ -117,8 +117,8 @@ export default function Layout({ children }: any) {
                         <img
                           className="card-img-top"
                           style={{ height: "12rem" }}
-                          src={`${element.thumbnail.path}.jpg`}
-                          alt="Card image cap"
+                          src={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                          alt={`${element.thumbnail.path}`}
                         ></img>
                       )}
 
