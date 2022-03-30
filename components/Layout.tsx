@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import md5 from "md5";
+import NavCharacters from "./NavCharacters";
+import NavComics from "./NavComics";
+import NavCreators from "./NavCreators";
+import NavEvents from "./NavEvents";
+import NavSeries from "./NavSeries";
+import NavStories from "./NavStories";
 
 export default function Layout({ children }: any) {
   const [dataCharacters, setdataCharacters] = useState<any[]>([]);
@@ -77,29 +83,7 @@ export default function Layout({ children }: any) {
               <a>All Characters</a>
             </Link>
             <div className="row">
-              {dataCharacters.map((element) => {
-                return (
-                  <div key={element.name} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt=""
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.name}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavCharacters data={dataCharacters} />
             </div>
           </div>
         </div>
@@ -110,29 +94,7 @@ export default function Layout({ children }: any) {
               <a>All Comics</a>
             </Link>
             <div className="row">
-              {dataComics.map((element) => {
-                return (
-                  <div key={element.title} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt="Card image cap"
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.title}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavComics data={dataComics} />
             </div>
           </div>
         </div>
@@ -143,29 +105,7 @@ export default function Layout({ children }: any) {
               <a>All Creators</a>
             </Link>
             <div className="row">
-              {dataCreators.map((element) => {
-                return (
-                  <div key={element.firstName} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt="Card image cap"
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.firstName}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavCreators data={dataCreators} />
             </div>
           </div>
         </div>
@@ -176,29 +116,7 @@ export default function Layout({ children }: any) {
               <a>All Events</a>
             </Link>
             <div className="row">
-              {dataEvents.map((element) => {
-                return (
-                  <div key={element.title} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt="Card image cap"
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.title}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavEvents data={dataEvents} />
             </div>
           </div>
         </div>
@@ -209,29 +127,7 @@ export default function Layout({ children }: any) {
               <a>All Series</a>
             </Link>
             <div className="row">
-              {dataSeries.map((element) => {
-                return (
-                  <div key={element.title} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src={`${element.path}.${element.extension}`}
-                          alt="Card image cap"
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.title}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavSeries data={dataSeries} />
             </div>
           </div>
         </div>
@@ -242,29 +138,7 @@ export default function Layout({ children }: any) {
               <a>All Stories</a>
             </Link>
             <div className="row">
-              {dataStories.map((element) => {
-                return (
-                  <div key={element.title} className="col-3">
-                    <div className="card">
-                      {element.path
-                        .split("/")
-                        .includes("image_not_available") === true ? (
-                        <img src="/7z6qt753qe031.webp"></img>
-                      ) : (
-                        <img
-                          className="card-img-top"
-                          style={{ height: "12rem" }}
-                          src="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
-                          alt="Card image cap"
-                        ></img>
-                      )}
-                      <div className="card-body">
-                        <h5 className="card-title">{element.title}</h5>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <NavStories data={dataStories} />
             </div>
           </div>
         </div>

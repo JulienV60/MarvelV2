@@ -13,7 +13,7 @@ export default async function handler(
         `${process.env.REACT_APP_MARVEL_PUBLIC_KEY}`
     );
 
-    for (let index = 196; index <= 201; index++) {
+    for (let index = 201; index <= 250; index++) {
       console.log(index);
       const response = await fetch(
         `https://gateway.marvel.com/v1/public/comics?ts=${time}&apikey=${
@@ -21,9 +21,9 @@ export default async function handler(
         }&hash=${hash}&limit=100&offset=${index * 100}`
       )
         .then((data) => data.json())
-        .then((response) => response.data.results);
+        .then((response) => response?.data?.results);
       fs.appendFile(
-        "data.json",
+        "data2.json",
         `${JSON.stringify(response)}`,
         function (err: any) {
           if (err) throw err;
