@@ -9,9 +9,7 @@ export function getDatabase(): Promise<MongoClient> {
     return Promise.resolve(cachedDb);
   }
 
-  return MongoClient.connect(
-    "mongodb+srv://admin-database-Maxime51:YLoFugzYRn74c657@cluster0.varqm.mongodb.net/Marvel?retryWrites=true&w=majority"
-  ).then((db) => {
+  return MongoClient.connect(`${process.env.REACT_APP_MONGO}`).then((db) => {
     cachedDb = db;
     return cachedDb;
   });
