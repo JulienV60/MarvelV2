@@ -13,10 +13,10 @@ export default async function handler(
         `${process.env.REACT_APP_MARVEL_PUBLIC_KEY}`
     );
 
-    for (let index = 201; index <= 250; index++) {
+    for (let index = 1; index <= 120; index++) {
       console.log(index);
       const response = await fetch(
-        `https://gateway.marvel.com/v1/public/comics?ts=${time}&apikey=${
+        `https://gateway.marvel.com/v1/public/series?ts=${time}&apikey=${
           process.env.REACT_APP_MARVEL_PUBLIC_KEY
         }&hash=${hash}&limit=100&offset=${index * 100}`
       )
