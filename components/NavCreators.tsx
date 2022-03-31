@@ -11,7 +11,10 @@ export default function NavCreators(props: any) {
                   {element.thumbnail.path
                     .split("/")
                     .includes("image_not_available") === true ? (
-                    <img src="/7z6qt753qe031.webp"></img>
+                    <img
+                      style={{ height: "12rem" }}
+                      src="/stock-vector-user-not-available-icon-1038380422.jpeg"
+                    ></img>
                   ) : (
                     <img
                       className="card-img-top"

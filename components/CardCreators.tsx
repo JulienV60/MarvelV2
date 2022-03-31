@@ -14,7 +14,7 @@ export default function CardCreators(props: any) {
                 <img
                   className="card-img-top"
                   style={{ height: "12rem" }}
-                  src="/7z6qt753qe031.webp"
+                  src="/stock-vector-user-not-available-icon-1038380422.jpeg"
                 ></img>
               ) : (
                 <img
