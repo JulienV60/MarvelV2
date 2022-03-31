@@ -20,10 +20,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const dataCharacters = await dataComics?.characters.items;
   const dataStories = await dataComics?.stories.items;
   const dataEvents = await dataComics?.events.items;
+  console.log(dataComics);
   //recupere les id creators dans un tableau
   const creatorsId = dataCreators.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
   });
+
   //recuperer les creators du tableau ci dessus en une requete
   const filteredCreators = creatorsId.filter(function (ele: any, pos: any) {
     return creatorsId.indexOf(ele) == pos;
@@ -39,10 +41,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const charactersId = dataCharacters.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
   });
+
   //recuperer les characters du tableau ci dessus en une requete
   const filteredCharacters = charactersId.filter(function (ele: any, pos: any) {
     return charactersId.indexOf(ele) == pos;
   });
+
   const arrayOfCharacters = await mongodb
     .db()
     .collection("Characters")
@@ -50,10 +54,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: { $in: filteredCharacters },
     })
     .toArray();
+
   //recupere les id stories dans un tableau
   const storiesId = dataStories.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
   });
+
   const filteredStories = storiesId.filter(function (ele: any, pos: any) {
     return storiesId.indexOf(ele) == pos;
   });
@@ -65,6 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: { $in: filteredStories },
     })
     .toArray();
+
   //recupere les id events dans un tableau
   const eventsId = dataEvents.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
@@ -104,7 +111,7 @@ export default function CharacterDetails({
   const dataCreatorsJSON = JSON.parse(dataCreators);
   const dataEventsJSON = JSON.parse(dataEvents);
   const dataStoriesJSON = JSON.parse(dataStories);
-  console.log(dataComicsJSON);
+
   return (
     <Layout>
       <div className="container-fluid">
@@ -113,14 +120,14 @@ export default function CharacterDetails({
             className="row"
             style={{ width: "100%", height: "30rem", alignContent: "center" }}
           >
-            <div className="col-4 mx-auto">
-              <h1>{dataComicsJSON.title}</h1>
-            </div>
             <div className="col-3 mx-auto">
               <img
                 style={{ width: "400px" }}
                 src={`${dataComicsJSON.thumbnail.path}.${dataComicsJSON.thumbnail.extension}`}
               />
+            </div>
+            <div className="col-4 mx-auto">
+              <h1>{dataComicsJSON.title}</h1>
             </div>
           </div>
         </section>
@@ -128,6 +135,7 @@ export default function CharacterDetails({
         <section>
           <h2>Creators :</h2>
           <div className="row overflow-auto" style={{ height: "25rem" }}></div>
+
           {dataCreatorsJSON.map((element: any, index: number) => {
             return (
               <CreatorsForDetails
@@ -148,7 +156,13 @@ export default function CharacterDetails({
                 key={element.name}
                 id={element.id}
                 name={element.name}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                data={
+                  `${element.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? `${element.thumbnail.path} ="/stock-vector-user-not-available-icon-1038380422.jpeg" `
+                    : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                }
               />
             );
           })}
