@@ -4,12 +4,23 @@ import React from "react";
 import { getDatabase } from "../src/database";
 
 export default function Home() {
+  const [img, setImage] = React.useState(<></>);
   React.useEffect(() => {
     document
       .getElementById("toto")
       ?.addEventListener("ended", myHandler, false);
     function myHandler(e: any) {
-      document?.getElementById("totoimage")?.style?.opacity === "50";
+      setImage(
+        <img
+          id="totoimage"
+          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DA2E198288BFCA56AB53340211B38DE7134E40E4521EDCAFE6FFB8CD69250DE9/scale?width=2880&amp;aspectRatio=1.78&amp;format=jpeg"
+          style={{
+            opacity: "100",
+            transition: "opacity 1500ms ease 0s",
+            width: "100vw",
+          }}
+        />
+      );
     }
   }, []);
 
@@ -27,7 +38,7 @@ export default function Home() {
               poster="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DA2E198288BFCA56AB53340211B38DE7134E40E4521EDCAFE6FFB8CD69250DE9/scale?width=2880&aspectRatio=1.78&format=jpeg"
             >
               <source
-                src="/1636056889-marvel.mp4"
+                src="/output(compress-video-online.com).mp4"
                 type="video/mp4"
                 id="toto"
               ></source>
@@ -38,15 +49,7 @@ export default function Home() {
               className="imageaftervideo"
               style={{ opacity: "1" }}
             >
-              <img
-                id="totoimage"
-                src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DA2E198288BFCA56AB53340211B38DE7134E40E4521EDCAFE6FFB8CD69250DE9/scale?width=2880&amp;aspectRatio=1.78&amp;format=jpeg"
-                style={{
-                  opacity: "0",
-                  transition: "opacity 1500ms ease 0s",
-                  width: "100vw",
-                }}
-              />
+              {img}
               <div className="fondvideo"></div>
             </div>
 

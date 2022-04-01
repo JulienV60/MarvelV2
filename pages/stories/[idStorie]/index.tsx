@@ -21,7 +21,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const dataComics = await dataStories?.comics.items;
   const dataSeries = await dataStories?.series.items;
   const dataEvents = await dataStories?.events.items;
-  console.log(dataStories);
   //recupere les id creators dans un tableau
   const creatorsId = dataCreators.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
