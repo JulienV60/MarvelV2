@@ -136,8 +136,14 @@ export default function CharacterDetails({
           <div className="arow" style={{ height: "10rem" }}>
             <div className="col-4 mx-auto">
               <img
-                style={{ width: "3Orem" }}
-                src={`${dataSeriesJSON.thumbnail.path}.${dataSeriesJSON.thumbnail.extension}`}
+                style={{ width: "25rem" }}
+                src={
+                  `${dataSeriesJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/7z6qt753qe031.webp"
+                    : `${dataSeriesJSON.thumbnail.path}.${dataSeriesJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="col-4 mx-auto">
@@ -149,7 +155,7 @@ export default function CharacterDetails({
         <br></br>
         <div className="frow overflow-auto">
           {" "}
-          <h2>Creators:</h2>
+          <h2>Creators :</h2>
           {dataCreatorsJSON.map((element: any, index: number) => {
             return (
               <CreatorsForDetails
@@ -168,7 +174,7 @@ export default function CharacterDetails({
           })}
         </div>
         <section>
-          <h2>Comics:</h2>
+          <h2>Comics :</h2>
           <div className="row overflow-auto" style={{ height: "26rem" }}>
             {dataComicsJSON.map((element: any, index: number) => {
               return (
@@ -189,7 +195,7 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Charactors</h2>
+          <h2>Characters :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataCharacJSON.map((element: any, index: number) => {
               return (
@@ -226,7 +232,7 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Events: </h2>
+          <h2>Events : </h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataEventsJSON.map((element: any, index: number) => {
               return (

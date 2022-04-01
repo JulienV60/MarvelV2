@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+.imageHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.imageHome img {
+  width: 100%;
+}
 a {
   text-decoration: none;
 }
@@ -203,13 +212,10 @@ video {
   margin-top: 1rem;
 }
 
-.quatrecentquatre {
-  background-image: url(https://64.media.tumblr.com/2233c2134f7b0d7354d5ace4649bfc55/tumblr_o4p5xbS9Un1qdw2puo1_1280.jpg);
+.quatrecentquatre img {
   width: auto;
-  color: transparent;
-  height: 55rem;
-  background-size: cover;
-  background-repeat: no-repeat;
+  padding-left: 15rem;
+  height: 60rem;
 }
 .pagination {
   display: flex;

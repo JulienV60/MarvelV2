@@ -214,27 +214,6 @@ export default function CharacterDetails({
         </div>
         <br></br>
         <section>
-          <h2>Events :</h2>
-          <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
-            {dataEventsJSON.map((element: any, index: number) => {
-              return (
-                <EventsForDetails
-                  key={element.title}
-                  id={element.id}
-                  name={element.title}
-                  data={
-                    `${element.thumbnail.path}`
-                      .split("/")
-                      .includes("image_not_available") === true
-                      ? `/7z6qt753qe031.webp`
-                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
-                  }
-                />
-              );
-            })}
-          </div>
-        </section>
-        <section>
           <h2>Series :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataSeriesJSON.map((element: any, index: number) => {

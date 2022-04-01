@@ -136,7 +136,13 @@ export default function CharacterDetails({
             <div className="col-4 mx-auto">
               <img
                 style={{ width: "40rem" }}
-                src={`${dataEventsJSON.thumbnail.path}.${dataEventsJSON.thumbnail.extension}`}
+                src={
+                  `${dataEventsJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/7z6qt753qe031.webp"
+                    : `${dataEventsJSON.thumbnail.path}.${dataEventsJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="col-4 mx-auto">
@@ -150,7 +156,7 @@ export default function CharacterDetails({
         <br></br>
         <br></br>
         <br></br>
-        <h2>Creators:</h2>
+        <h2>Creators :</h2>
         <div className="row overflow-auto" style={{ height: "30rem" }}>
           {dataCreatorsJSON.map((element: any, index: number) => {
             return (
@@ -170,7 +176,7 @@ export default function CharacterDetails({
           })}
         </div>
         <section>
-          <h2>Comics:</h2>
+          <h2>Comics :</h2>
           <div className="row overflow-auto" style={{ height: "30rem" }}>
             {dataComicsJSON.map((element: any, index: number) => {
               return (
@@ -191,7 +197,7 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Charactors:</h2>
+          <h2>Characters :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataCharacJSON.map((element: any, index: number) => {
               return (
@@ -237,7 +243,7 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Stories:</h2>
+          <h2>Stories :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataStoriesJSON.map((element: any, index: number) => {
               return (

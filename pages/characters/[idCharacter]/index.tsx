@@ -131,7 +131,13 @@ export default function CharacterDetails({
             <div className="col-3 mx-auto">
               <img
                 style={{ width: "400px" }}
-                src={`${datacharacJSON.thumbnail.path}.${datacharacJSON.thumbnail.extension}`}
+                src={
+                  `${datacharacJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/7z6qt753qe031.webp"
+                    : `${datacharacJSON.thumbnail.path}.${datacharacJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="col-4 mx-auto">
@@ -276,7 +282,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Series:</h2>
+          <h2>Series :</h2>
           <div className="row overflow-auto">
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
@@ -298,7 +304,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories</h2>
+          <h2>Stories :</h2>
           <div className="row overflow-auto">
             {dataStoriesJSON.map((element: any, index: number) => {
               return (
