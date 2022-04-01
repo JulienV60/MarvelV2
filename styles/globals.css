@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+.imageHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.imageHome img {
+  width: 100%;
+}
 a {
   text-decoration: none;
 }
@@ -203,13 +212,10 @@ video {
   margin-top: 1rem;
 }
 
-.quatrecentquatre {
-  background-image: url(https://64.media.tumblr.com/2233c2134f7b0d7354d5ace4649bfc55/tumblr_o4p5xbS9Un1qdw2puo1_1280.jpg);
+.quatrecentquatre img {
   width: auto;
-  color: transparent;
-  height: 55rem;
-  background-size: cover;
-  background-repeat: no-repeat;
+  padding-left: 15rem;
+  height: 60rem;
 }
 .pagination {
   display: flex;
@@ -268,9 +274,6 @@ video {
   align-items: center;
   z-index: 0;
 }
-.arow img {
-  padding-top: 2rem;
-}
 
 .creators a {
   padding-left: 24rem;
@@ -306,13 +309,14 @@ video {
 }
 .col-4 p {
   text-decoration: none;
-  color: black;
+  color: white;
   text-align: center;
 }
 .col-2 p {
   text-decoration: none;
-  color: black;
-  padding-left: 4rem;
+  color: white;
+  text-align: center;
+  padding-right: 2rem;
 }
 .col-2 {
   width: 20rem;
@@ -320,4 +324,19 @@ video {
 }
 .col-4 h1 {
   text-align: center;
+  padding-left: 1rem;
+}
+.col-4 p {
+  text-align: center;
+  line-height: 2rem;
+}
+.container-fluid {
+  background-color: #333;
+  color: white;
+}
+.container .container-fluid h1 {
+  color: black;
+}
+.container-fluid h2 {
+  color: black;
 }

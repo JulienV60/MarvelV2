@@ -7,8 +7,7 @@ export default function CreatorsForDetails(props: any) {
       <Link href={`/creators/${props.id}`}>
         <a>
           <p>{props.name}</p>
-          {props.data.split("/")[10].includes("image_not_available") ===
-          true ? (
+          {props.data.split("/").includes("image_not_available") === true ? (
             <img
               style={{ maxHeight: "350px" }}
               src="/stock-vector-user-not-available-icon-1038380422.jpeg"

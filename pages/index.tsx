@@ -5,10 +5,11 @@ import { getDatabase } from "../src/database";
 
 export default function Home() {
   React.useEffect(() => {
-
-    document.getElementById("toto").addEventListener("ended", myHandler, false);
+    document
+      .getElementById("toto")
+      ?.addEventListener("ended", myHandler, false);
     function myHandler(e: any) {
-      document.getElementById("totoimage").style.opacity = "50";
+      document?.getElementById("totoimage")?.style?.opacity === "50";
     }
   }, []);
 

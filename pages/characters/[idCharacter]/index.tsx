@@ -131,7 +131,13 @@ export default function CharacterDetails({
             <div className="col-3 mx-auto">
               <img
                 style={{ width: "400px" }}
-                src={`${datacharacJSON.thumbnail.path}.${datacharacJSON.thumbnail.extension}`}
+                src={
+                  `${datacharacJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/7z6qt753qe031.webp"
+                    : `${datacharacJSON.thumbnail.path}.${datacharacJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="col-4 mx-auto">
@@ -145,10 +151,10 @@ export default function CharacterDetails({
                 if (element.name === infoName) {
                   return (
                     <>
-                      <p>genre : {element.appearance.gender}</p>
-                      <p>color eyes : {element.appearance["eye-color"]}</p>
-                      <p>height : {element.appearance.height[1]}</p>
-                      <p>weight : {element.appearance.weight[1]}</p>
+                      <p>Genre : {element.appearance.gender}</p>
+                      <p>Eyes Color : {element.appearance["eye-color"]}</p>
+                      <p>Height : {element.appearance.height[1]}</p>
+                      <p>Weight : {element.appearance.weight[1]}</p>
                       <p>
                         First Appareance:
                         {element.biography["first-appearance"]}
@@ -240,7 +246,13 @@ export default function CharacterDetails({
                   key={element.title}
                   id={element.id}
                   name={element.title}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? "/7z6qt753qe031.webp"
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
                 />
               );
             })}
@@ -256,7 +268,13 @@ export default function CharacterDetails({
                   key={element.title}
                   id={element.id}
                   name={element.title}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? "/7z6qt753qe031.webp"
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
                 />
               );
             })}
@@ -264,7 +282,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Series:</h2>
+          <h2>Series :</h2>
           <div className="row overflow-auto">
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
@@ -272,7 +290,13 @@ export default function CharacterDetails({
                   key={element.title}
                   id={element.id}
                   name={element.title}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `/7z6qt753qe031.webp`
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
                 />
               );
             })}
@@ -280,7 +304,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories</h2>
+          <h2>Stories :</h2>
           <div className="row overflow-auto">
             {dataStoriesJSON.map((element: any, index: number) => {
               return (

@@ -4,6 +4,7 @@ import ComicsForDetails from "../../../components/ComicsForDetails";
 import CreatorsForDetails from "../../../components/CreatorsForDetails";
 import EventsForDetails from "../../../components/EventForDetails";
 import Layout from "../../../components/Layout";
+import SerieForCharacterDetail from "../../../components/SerieForDetails";
 import StorieForDetails from "../../../components/StorieForDetails";
 import { getDatabase } from "../../../src/database";
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -97,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .db()
     .collection("Series")
     .find({
-      id: { $in: filteredComics },
+      id: { $in: filteredSeries },
     })
     .toArray();
   return {
@@ -118,13 +119,14 @@ export default function CharacterDetails({
   dataEvents,
   dataStories,
   dataCharac,
+  dataSeries,
 }: any): JSX.Element {
   const dataCharacJSON = JSON.parse(dataCharac);
   const dataComicsJSON = JSON.parse(dataComics);
   const dataCreatorsJSON = JSON.parse(dataCreators);
   const dataEventsJSON = JSON.parse(dataEvents);
   const dataStoriesJSON = JSON.parse(dataStories);
-
+  const dataSeriesJSON = JSON.parse(dataSeries);
   return (
     <Layout>
       {" "}
@@ -134,7 +136,13 @@ export default function CharacterDetails({
             <div className="col-4 mx-auto">
               <img
                 style={{ width: "40rem" }}
-                src={`${dataEventsJSON.thumbnail.path}.${dataEventsJSON.thumbnail.extension}`}
+                src={
+                  `${dataEventsJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/7z6qt753qe031.webp"
+                    : `${dataEventsJSON.thumbnail.path}.${dataEventsJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="col-4 mx-auto">
@@ -143,21 +151,32 @@ export default function CharacterDetails({
             </div>
           </div>
         </section>{" "}
-        <h2>Creators:</h2>
-        <div className="row overflow-auto">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h2>Creators :</h2>
+        <div className="row overflow-auto" style={{ height: "30rem" }}>
           {dataCreatorsJSON.map((element: any, index: number) => {
             return (
               <CreatorsForDetails
                 key={element.title}
                 id={element.id}
                 name={element.fullName}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                data={
+                  `${element.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/stock-vector-user-not-available-icon-1038380422.jpeg"
+                    : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                }
               />
             );
           })}
         </div>
         <section>
-          <h2>Comics:</h2>
+          <h2>Comics :</h2>
           <div className="row overflow-auto" style={{ height: "30rem" }}>
             {dataComicsJSON.map((element: any, index: number) => {
               return (
@@ -178,7 +197,7 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Charactors:</h2>
+          <h2>Characters :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataCharacJSON.map((element: any, index: number) => {
               return (
@@ -200,7 +219,31 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories:</h2>
+          <h2>Series :</h2>
+          <div
+            className="row overflow-auto"
+            style={{ height: "30rem", maxHeight: "40rem" }}
+          >
+            {dataSeriesJSON.map((element: any, index: number) => {
+              return (
+                <SerieForCharacterDetail
+                  key={element.title}
+                  id={element.id}
+                  name={element.title}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `/7z6qt753qe031.webp`
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
+                />
+              );
+            })}
+          </div>
+        </section>
+        <section>
+          <h2>Stories :</h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataStoriesJSON.map((element: any, index: number) => {
               return (

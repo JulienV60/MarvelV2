@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 const MONGODB_URI = process.env.REACT_APP_MONGO;
 
-let cachedDb: MongoClient = null;
+let cachedDb: MongoClient;
 
 export function getDatabase(): Promise<MongoClient> {
   if (cachedDb) {
