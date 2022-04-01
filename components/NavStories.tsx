@@ -11,12 +11,17 @@ export default function NavStories(props: any) {
                   <img
                     className="card-img-top"
                     style={{ height: "12rem" }}
-                    src="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+                    src="/7z6qt753qe031.webp"
                     alt="Card image cap"
                   ></img>
 
                   <div className="card-body">
-                    <h5 className="card-title">{element.title}</h5>
+                    <h5
+                      className="card-title"
+                      style={{ height: "9rem", fontSize: "0.7rem" }}
+                    >
+                      {element.title}
+                    </h5>
                   </div>
                 </div>
               </a>

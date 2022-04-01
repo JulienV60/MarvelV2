@@ -114,94 +114,97 @@ export default function CharacterDetails({
 
   return (
     <Layout>
-      <section>
-        <div className="arow" style={{ width: "100%", height: "30rem" }}>
-          <div className="col-4 mx-auto">
-            <img
-              style={{ width: "40rem" }}
-              src={`${dataComicsJSON.thumbnail.path}.${dataComicsJSON.thumbnail.extension}`}
-            />
-          </div>
-          <div className="col-4 mx-auto">
-            <h1>{dataComicsJSON.title}</h1>
-            <p>Price: {dataComicsJSON.prices[0].price} $</p>
-          </div>
-        </div>
-      </section>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <section>
-        <div className="frow overflow-auto">
-          {" "}
-          <h2>Creators:</h2>
-          {dataCreatorsJSON.map((element: any, index: number) => {
-            return (
-              <CreatorsForDetails
-                key={element.title}
-                id={element.id}
-                name={element.fullName}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+      {" "}
+      <div className="container-fluid">
+        <section>
+          <div className="arow" style={{ width: "100%", height: "30rem" }}>
+            <div className="col-4 mx-auto">
+              <img
+                style={{ width: "40rem" }}
+                src={`${dataComicsJSON.thumbnail.path}.${dataComicsJSON.thumbnail.extension}`}
               />
-            );
-          })}
-        </div>
-      </section>
-      <section>
+            </div>
+            <div className="col-4 mx-auto">
+              <h1>{dataComicsJSON.title}</h1>
+              <p>Price: {dataComicsJSON.prices[0].price} $</p>
+            </div>
+          </div>
+        </section>
         <br></br>
         <br></br>
-        <h2>Charactors :</h2>
-        <div className="row overflow-auto" style={{ height: "25rem" }}></div>
-        {dataCharacJSON.map((element: any, index: number) => {
-          return (
-            <CharactersForDetails
-              key={element.name}
-              id={element.id}
-              name={element.name}
-              data={
-                `${element.thumbnail.path}`
-                  .split("/")
-                  .includes("image_not_available") === true
-                  ? `${element.thumbnail.path} ="/stock-vector-user-not-available-icon-1038380422.jpeg" `
-                  : `${element.thumbnail.path}.${element.thumbnail.extension}`
-              }
-            />
-          );
-        })}
-      </section>
-      <br></br>
-      <section>
-        <h2>Stories :IN PROGRESS</h2>
-        <div className="row overflow-auto" style={{ height: "25rem" }}></div>
-        {dataStoriesJSON.map((element: any, index: number) => {
-          return (
-            <StorieForDetails
-              key={element.title}
-              id={element.id}
-              title={element.title}
-            />
-          );
-        })}
-      </section>
-      <br></br>
-      <section>
-        <h2>Events : IN PROGRESS</h2>
-        <div className="row overflow-auto" style={{ height: "25rem" }}>
-          {dataEventsJSON.map((element: any, index: number) => {
-            return (
-              <EventsForDetails
-                key={element.title}
-                id={element.id}
-                title={element.title}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-              />
-            );
-          })}
-        </div>
-      </section>
+        <br></br>
+        <br></br>
+        <section>
+          <div className="frow overflow-auto">
+            <h2>Creators:</h2>{" "}
+            {dataCreatorsJSON.map((element: any, index: number) => {
+              return (
+                <CreatorsForDetails
+                  key={element.title}
+                  id={element.id}
+                  name={element.fullName}
+                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                />
+              );
+            })}
+          </div>
+        </section>
+        <section>
+          <br></br>
+          <br></br>
+          <h2>Charactors : IN PROGRESS</h2>
+          <div className="row overflow-auto" style={{ height: "30rem" }}>
+            {dataCharacJSON.map((element: any, index: number) => {
+              return (
+                <CharactersForDetails
+                  key={element.name}
+                  id={element.id}
+                  name={element.name}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `${element.thumbnail.path} ="/stock-vector-user-not-available-icon-1038380422.jpeg" `
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
+                />
+              );
+            })}
+          </div>
+        </section>
+        <br></br>
+        <section>
+          <h2>Stories : IN PROGRESS</h2>
+          <div className="row overflow-auto" style={{ height: "25rem" }}>
+            {dataStoriesJSON.map((element: any, index: number) => {
+              return (
+                <StorieForDetails
+                  key={element.title}
+                  id={element.id}
+                  title={element.title}
+                  data={"/7z6qt753qe031.webp"}
+                />
+              );
+            })}
+          </div>
+        </section>
+        <br></br>
+        <section>
+          <h2>Events : IN PROGRESS</h2>
+          <div className="row overflow-auto" style={{ height: "25rem" }}>
+            {dataEventsJSON.map((element: any, index: number) => {
+              return (
+                <EventsForDetails
+                  key={element.title}
+                  id={element.id}
+                  title={element.title}
+                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                />
+              );
+            })}
+          </div>
+        </section>
+      </div>
     </Layout>
   );
 }

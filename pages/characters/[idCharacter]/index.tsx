@@ -1,12 +1,14 @@
+import { getDatabase } from "../../../src/database";
 import { GetServerSideProps } from "next";
 import ComicsForCharacterDetail from "../../../components/ComicsForDetails";
-import EventForCharacterDetail from "../../../components/EventForDetails";
+import SerieForDetails from "../../../components/SerieForDetails";
+import EventsForDetails from "../../../components/EventForDetails";
 import Layout from "../../../components/Layout";
-import SerieForCharacterDetail from "../../../components/SerieForDetails";
-import { getDatabase } from "../../../src/database";
+
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { json } from "stream/consumers";
+import StoriesForCharacterDetail from "../../../components/StorieForDetails";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id: number = Number(context?.params?.idCharacter);
 
@@ -118,7 +120,6 @@ export default function CharacterDetails({
   const dataEventsJSON = JSON.parse(dataEvents);
   const dataSeriesJSON = JSON.parse(dataSeries);
   const dataStoriesJSON = JSON.parse(dataStories);
-  console.log(infoCaracter.results[0].biography["first-appearance"]);
   return (
     <Layout>
       <div className="container-fluid">
@@ -238,6 +239,7 @@ export default function CharacterDetails({
                 <ComicsForCharacterDetail
                   key={element.title}
                   id={element.id}
+                  name={element.title}
                   data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
                 />
               );
@@ -250,9 +252,10 @@ export default function CharacterDetails({
           <div className="row overflow-auto">
             {dataEventsJSON.map((element: any, index: number) => {
               return (
-                <EventForCharacterDetail
+                <EventsForDetails
                   key={element.title}
                   id={element.id}
+                  name={element.title}
                   data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
                 />
               );
@@ -265,9 +268,10 @@ export default function CharacterDetails({
           <div className="row overflow-auto">
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
-                <SerieForCharacterDetail
+                <SerieForDetails
                   key={element.title}
                   id={element.id}
+                  name={element.title}
                   data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
                 />
               );
@@ -276,7 +280,18 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories : IN PROGRESS</h2>
+          <h2>Stories</h2>
+          <div className="row overflow-auto">
+            {dataStoriesJSON.map((element: any, index: number) => {
+              return (
+                <StoriesForCharacterDetail
+                  key={element.title}
+                  id={element.id}
+                  title={element.title}
+                />
+              );
+            })}
+          </div>
         </section>
       </div>
     </Layout>

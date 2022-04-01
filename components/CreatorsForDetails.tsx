@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function CreatorsForDetails(props: any) {
   return (
-    <div className="creators" key={props.id}>
+    <div className="col-2" key={props.id}>
       <Link href={`/creators/${props.id}`}>
         <a>
           <p>{props.name}</p>

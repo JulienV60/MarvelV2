@@ -17,7 +17,12 @@ export default function CardStories(props: any) {
               ></img>
 
               <div className="card-body">
-                <h5 className="card-title">{props.nameCard}</h5>
+                <h5
+                  className="card-title"
+                  style={{ height: "9rem", fontSize: "0.7rem" }}
+                >
+                  {props.nameCard}
+                </h5>
               </div>
             </div>
           </div>

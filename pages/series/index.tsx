@@ -8,6 +8,7 @@ import { getDatabase } from "../../src/database";
 import CardComics from "../../components/CardComics";
 import CardCreators from "../../components/CardCreators";
 import CardEvents from "../../components/CardEvents";
+import CardSeries from "../../components/CardSeries";
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let page = 0;
@@ -56,9 +57,9 @@ export default function Series({ data, pageSelected }: any) {
           <div className="arow">
             {dataJSON[0].map((comic: any) => {
               return (
-                <Link key={comic.id} href={`/events/${comic.id}`}>
+                <Link key={comic.id} href={`/series/${comic.id}`}>
                   <a>
-                    <CardEvents
+                    <CardSeries
                       id={`${comic.id}`}
                       idComic={`${comic.id}`}
                       imgCard={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}

@@ -6,6 +6,7 @@ export default function ComicsForDetails(props: any) {
     <div className="col-2" key={props.id}>
       <Link href={`/comics/${props.id}`}>
         <a>
+          <p>{props.name}</p>
           <img src={`${props.data}`} style={{ maxHeight: "350px" }} />
         </a>
       </Link>
