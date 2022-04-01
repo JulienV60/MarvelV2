@@ -264,7 +264,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Series :</h2>
+          <h2>Series:</h2>
           <div className="row overflow-auto">
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
