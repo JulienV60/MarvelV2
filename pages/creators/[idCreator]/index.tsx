@@ -118,7 +118,13 @@ export default function CharacterDetails({
             <div className="col-3 mx-auto">
               <img
                 style={{ width: "20rem", height: "30rem" }}
-                src={`${dataCreatorsJSON.thumbnail.path}.${dataCreatorsJSON.thumbnail.extension}`}
+                src={
+                  `${dataCreatorsJSON.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/stock-vector-user-not-available-icon-1038380422.jpeg"
+                    : `${dataCreatorsJSON.thumbnail.path}.${dataCreatorsJSON.thumbnail.extension}`
+                }
               />
             </div>
             <div className="ecol-3 mx-auto">
@@ -149,10 +155,31 @@ export default function CharacterDetails({
             })}
           </div>
         </section>
+        <section>
+          <h2>Events :</h2>
+          <div className="row overflow-auto" style={{ height: "25rem" }}>
+            {dataEventsJSON.map((element: any, index: number) => {
+              return (
+                <EventsForDetails
+                  key={element.title}
+                  id={element.id}
+                  title={element.title}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `/7z6qt753qe031.webp`
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
+                />
+              );
+            })}
+          </div>
+        </section>
         <br></br>
         <section>
           <h2>Series :</h2>
-          <div className="row overflow-auto" style={{ height: "28rem" }}>
+          <div className="row overflow-auto" style={{ height: "30rem" }}>
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
                 <SerieForCharacterDetail
@@ -187,21 +214,6 @@ export default function CharacterDetails({
           </div>
         </section>
         <br></br>
-        <section>
-          <h2>Events :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
-            {dataEventsJSON.map((element: any, index: number) => {
-              return (
-                <EventsForDetails
-                  key={element.title}
-                  id={element.id}
-                  title={element.title}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-                />
-              );
-            })}
-          </div>
-        </section>
       </div>
     </Layout>
   );

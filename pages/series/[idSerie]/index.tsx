@@ -133,7 +133,7 @@ export default function CharacterDetails({
       {" "}
       <div className="container-fluid">
         <section>
-          <div className="arow" style={{ height: "40rem" }}>
+          <div className="arow" style={{ height: "10rem" }}>
             <div className="col-4 mx-auto">
               <img
                 style={{ width: "3Orem" }}
@@ -147,29 +147,29 @@ export default function CharacterDetails({
           </div>
         </section>{" "}
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h2>Creators:</h2>
-        <div className="row overflow-auto">
+        <div className="frow overflow-auto">
+          {" "}
+          <h2>Creators:</h2>
           {dataCreatorsJSON.map((element: any, index: number) => {
             return (
               <CreatorsForDetails
                 key={element.title}
                 id={element.id}
                 name={element.fullName}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                data={
+                  `${element.thumbnail.path}`
+                    .split("/")
+                    .includes("image_not_available") === true
+                    ? "/stock-vector-user-not-available-icon-1038380422.jpeg"
+                    : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                }
               />
             );
           })}
         </div>
         <section>
           <h2>Comics:</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
+          <div className="row overflow-auto" style={{ height: "26rem" }}>
             {dataComicsJSON.map((element: any, index: number) => {
               return (
                 <ComicsForDetails
@@ -211,7 +211,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories : IN PROGRESS</h2>
+          <h2>Stories : </h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataStoriesJSON.map((element: any, index: number) => {
               return (
@@ -226,14 +226,14 @@ export default function CharacterDetails({
           </div>
         </section>
         <section>
-          <h2>Events </h2>
+          <h2>Events: </h2>
           <div className="row overflow-auto" style={{ maxHeight: "40rem" }}>
             {dataEventsJSON.map((element: any, index: number) => {
               return (
                 <EventsForDetails
                   key={element.title}
                   id={element.id}
-                  title={element.title}
+                  name={element.title}
                   data={
                     `${element.thumbnail.path}`
                       .split("/")

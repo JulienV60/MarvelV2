@@ -142,7 +142,13 @@ export default function CharacterDetails({
                   key={element.title}
                   id={element.id}
                   name={element.fullName}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? "/stock-vector-user-not-available-icon-1038380422.jpeg"
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
                 />
               );
             })}
@@ -151,8 +157,8 @@ export default function CharacterDetails({
         <section>
           <br></br>
           <br></br>
-          <h2>Charactors : IN PROGRESS</h2>
-          <div className="row overflow-auto" style={{ height: "30rem" }}>
+          <h2>Charactors :</h2>
+          <div className="row overflow-auto" style={{ height: "27rem" }}>
             {dataCharacJSON.map((element: any, index: number) => {
               return (
                 <CharactersForDetails
@@ -163,7 +169,7 @@ export default function CharacterDetails({
                     `${element.thumbnail.path}`
                       .split("/")
                       .includes("image_not_available") === true
-                      ? `${element.thumbnail.path} ="/stock-vector-user-not-available-icon-1038380422.jpeg" `
+                      ? "/7z6qt753qe031.webp"
                       : `${element.thumbnail.path}.${element.thumbnail.extension}`
                   }
                 />
@@ -173,7 +179,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories : IN PROGRESS</h2>
+          <h2>Stories : </h2>
           <div className="row overflow-auto" style={{ height: "25rem" }}>
             {dataStoriesJSON.map((element: any, index: number) => {
               return (
@@ -197,7 +203,13 @@ export default function CharacterDetails({
                   key={element.title}
                   id={element.id}
                   title={element.title}
-                  data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? "/7z6qt753qe031.webp"
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
                 />
               );
             })}

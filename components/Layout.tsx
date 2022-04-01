@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
-import md5 from "md5";
+import React, { useEffect, useState } from "react";
 import NavCharacters from "./NavCharacters";
 import NavComics from "./NavComics";
 import NavCreators from "./NavCreators";
@@ -79,68 +77,67 @@ export default function Layout({ children }: any) {
         <div className="dropdown">
           <button className="dropbtn">Characters</button>
           <div className="dropdown-content">
-            <Link href="/characters?page=1">
-              <a>All Characters</a>
-            </Link>
-
             <div className="erow">
               <NavCharacters data={dataCharacters} />
             </div>
+            <Link href="/characters?page=1">
+              <a>All Characters</a>
+            </Link>
           </div>
         </div>
         <div className="dropdown">
           <button className="dropbtn">Comics</button>
           <div className="dropdown-content">
-            <Link href="/comics?page=1">
-              <a>All Comics</a>
-            </Link>
             <div className="erow">
               <NavComics data={dataComics} />
             </div>
+            <Link href="/comics?page=1">
+              <a>All Comics</a>
+            </Link>
           </div>
         </div>
         <div className="dropdown">
           <button className="dropbtn">Creators</button>
           <div className="dropdown-content">
-            <Link href="/creators?page=1">
-              <a>All Creators</a>
-            </Link>
             <div className="erow">
               <NavCreators data={dataCreators} />
             </div>
+            <Link href="/creators?page=1">
+              <a>All Creators</a>
+            </Link>
           </div>
         </div>
         <div className="dropdown">
           <button className="dropbtn">Events</button>
           <div className="dropdown-content">
-            <Link href="/events?page=1">
-              <a>All Events</a>
-            </Link>
             <div className="erow">
               <NavEvents data={dataEvents} />
             </div>
+            <Link href="/events?page=1">
+              <a>All Events</a>
+            </Link>
           </div>
         </div>
         <div className="dropdown">
           <button className="dropbtn">Series</button>
           <div className="dropdown-content">
-            <Link href="/series?page=1">
-              <a>All Series</a>
-            </Link>
             <div className="erow">
               <NavSeries data={dataSeries} />
             </div>
+            <Link href="/series?page=1">
+              <a>All Series</a>
+            </Link>
           </div>
         </div>
         <div className="dropdown">
           <button className="dropbtn">Stories</button>
           <div className="dropdown-content">
-            <Link href="/stories?page=1">
-              <a>All Stories</a>
-            </Link>
             <div className="erow">
               <NavStories data={dataStories} />
             </div>
+            <Link href="/stories?page=1">
+              <a>All Stories</a>
+            </Link>
           </div>
         </div>
       </div>

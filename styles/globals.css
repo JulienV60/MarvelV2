@@ -268,9 +268,6 @@ video {
   align-items: center;
   z-index: 0;
 }
-.arow img {
-  padding-top: 2rem;
-}
 
 .creators a {
   padding-left: 24rem;
@@ -306,13 +303,14 @@ video {
 }
 .col-4 p {
   text-decoration: none;
-  color: black;
+  color: white;
   text-align: center;
 }
 .col-2 p {
   text-decoration: none;
-  color: black;
-  padding-left: 4rem;
+  color: white;
+  text-align: center;
+  padding-right: 2rem;
 }
 .col-2 {
   width: 20rem;
@@ -320,4 +318,19 @@ video {
 }
 .col-4 h1 {
   text-align: center;
+  padding-left: 1rem;
+}
+.col-4 p {
+  text-align: center;
+  line-height: 2rem;
+}
+.container-fluid {
+  background-color: #333;
+  color: white;
+}
+.container .container-fluid h1 {
+  color: black;
+}
+.container-fluid h2 {
+  color: black;
 }
