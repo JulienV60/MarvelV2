@@ -4,7 +4,8 @@ import EventForCharacterDetail from "../../../components/EventForDetails";
 import Layout from "../../../components/Layout";
 import SerieForCharacterDetail from "../../../components/SerieForDetails";
 import { getDatabase } from "../../../src/database";
-import wiki from 'wikijs';
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import { json } from "stream/consumers";
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id: number = Number(context?.params?.idCharacter);
@@ -22,7 +23,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const dataStories = await dataCharacter?.stories.items;
   const dataEvents = await dataCharacter?.events.items;
 
-  const infoCarac = await fetch(`https://superheroapi.com/api/${process.env.REACT_APP_SUPERHERO}/search/${name}`).then((result) => result.json())
+  const infoCarac = await fetch(
+    `https://superheroapi.com/api/${process.env.REACT_APP_SUPERHERO}/search/${name}`
+  ).then((result) => result.json());
 
   //recupere les id comics dans un tableau
   const comicsId = dataComics.map((element: any) => {
@@ -96,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       dataSeries: JSON.stringify(arrayOfSeries),
       dataStories: JSON.stringify(arrayOfStories),
       infoCaracter: infoCarac,
-      infoName: name
+      infoName: name,
     },
   };
 };
@@ -108,14 +111,14 @@ export default function CharacterDetails({
   dataSeries,
   dataStories,
   infoCaracter,
-  infoName
+  infoName,
 }: any): JSX.Element {
   const datacharacJSON = JSON.parse(datacharac);
   const dataComicJSON = JSON.parse(dataComic);
   const dataEventsJSON = JSON.parse(dataEvents);
   const dataSeriesJSON = JSON.parse(dataSeries);
   const dataStoriesJSON = JSON.parse(dataStories);
-
+  console.log(infoCaracter.results[0].biography["first-appearance"]);
   return (
     <Layout>
       <div className="container-fluid">
@@ -131,17 +134,26 @@ export default function CharacterDetails({
               />
             </div>
             <div className="col-4 mx-auto">
-              <h1>{datacharacJSON.name} alias </h1>{infoCaracter.results?.map((element: any, index: number) => {
+              <h1>{datacharacJSON.name} alias </h1>
+              {infoCaracter.results?.map((element: any, index: number) => {
                 if (element.name === infoName) {
-                  return (<h1>{element.biography.aliases[0]}</h1>);
+                  return <h1>{element.biography.aliases[0]}</h1>;
                 }
               })}
               {infoCaracter.results?.map((element: any, index: number) => {
                 if (element.name === infoName) {
-                  return (<><p>genre : {element.appearance.gender}</p>
-                    <p>color eyes : {element.appearance["eye-color"]}</p>
-                    <p>height : {element.appearance.height[1]}</p>
-                  <p>weight : {element.appearance.weight[1]}</p></>);
+                  return (
+                    <>
+                      <p>genre : {element.appearance.gender}</p>
+                      <p>color eyes : {element.appearance["eye-color"]}</p>
+                      <p>height : {element.appearance.height[1]}</p>
+                      <p>weight : {element.appearance.weight[1]}</p>
+                      <p>
+                        First Appareance:
+                        {element.biography["first-appearance"]}
+                      </p>
+                    </>
+                  );
                 }
               })}
               <br></br>
@@ -151,31 +163,58 @@ export default function CharacterDetails({
         <br></br>
         <section>
           <h2>Statistiques :</h2>
-          <div className="container-fluid" >
+          <div className="container-fluid">
             {infoCaracter.results?.map((element: any, index: number) => {
               if (element.name === infoName) {
                 return (
                   <>
-                    <div className="progress">
-                      <p>Combat</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.combat}%` }} aria-valuenow={parseInt(element.powerstats.combat)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.combat}</div>
-                  </div>
-                    <div className="progress">
-                      <p>Durability</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.durability}%` }} aria-valuenow={parseInt(element.powerstats.durability)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.durability}</div>
-                    </div><div className="progress">
-                      <p>Intelligence</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.intelligence}%` }} aria-valuenow={parseInt(element.powerstats.intelligence)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.intelligence}</div>
-                    </div><div className="progress">
-                      <p>Power</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.power}%` }} aria-valuenow={parseInt(element.powerstats.power)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.power}</div>
-                    </div><div className="progress">
-                      <p>Speed</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.speed}%` }} aria-valuenow={parseInt(element.powerstats.speed)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.speed}</div>
-                    </div><div className="progress">
-                      <p>Strength</p>
-                    <div className="progress-bar" role="progressbar" style={{ width: `${element.powerstats.strength}%` }} aria-valuenow={parseInt(element.powerstats.strength)} aria-valuemin={0} aria-valuemax={100}>{element.powerstats.strength}</div>
-                  </div></>
+                    <div className="econtainer">
+                      <div className="arow">
+                        <div className="ecol-md-3 col-sm-6">
+                          Combat
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.combat)}
+                            text={`${element.powerstats.combat}%`}
+                          />
+                        </div>
+                        <div className="ecol-md-3 col-sm-6">
+                          Durability
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.durability)}
+                            text={`${element.powerstats.durability}%`}
+                          />
+                        </div>
+                        <div className="ecol-md-3 col-sm-6">
+                          Intelligence
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.intelligence)}
+                            text={`${element.powerstats.intelligence}%`}
+                          />
+                        </div>
+                        <div className="ecol-md-3 col-sm-6">
+                          Power
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.power)}
+                            text={`${element.powerstats.power}%`}
+                          />
+                        </div>
+                        <div className="ecol-md-3 col-sm-6">
+                          Speed
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.speed)}
+                            text={`${element.powerstats.speed}%`}
+                          />
+                        </div>
+                        <div className="ecol-md-3 col-sm-6">
+                          Strength
+                          <CircularProgressbar
+                            value={parseInt(element.powerstats.strength)}
+                            text={`${element.powerstats.strength}%`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </>
                 );
               }
             })}
@@ -183,17 +222,17 @@ export default function CharacterDetails({
         </section>
         <section>
           <h2>Teams :</h2>
-          <div className="container-fluid" >
+          <div className="container-fluid">
             {infoCaracter.results?.map((element: any, index: number) => {
               if (element.name === infoName) {
-                return (<p>{element.connections["group-affiliation"]}</p>)
+                return <p>{element.connections["group-affiliation"]}</p>;
               }
             })}
           </div>
         </section>
         <section>
           <h2>Comics :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
+          <div className="row overflow-auto">
             {dataComicJSON.map((element: any, index: number) => {
               return (
                 <ComicsForCharacterDetail
@@ -208,7 +247,7 @@ export default function CharacterDetails({
         <br></br>
         <section>
           <h2>Events :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
+          <div className="row overflow-auto">
             {dataEventsJSON.map((element: any, index: number) => {
               return (
                 <EventForCharacterDetail
@@ -223,7 +262,7 @@ export default function CharacterDetails({
         <br></br>
         <section>
           <h2>Series :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}>
+          <div className="row overflow-auto">
             {dataSeriesJSON.map((element: any, index: number) => {
               return (
                 <SerieForCharacterDetail
@@ -237,7 +276,7 @@ export default function CharacterDetails({
         </section>
         <br></br>
         <section>
-          <h2>Stories :</h2>
+          <h2>Stories : IN PROGRESS</h2>
         </section>
       </div>
     </Layout>
