@@ -14,13 +14,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .db()
     .collection("Series")
     .findOne({ id: id });
-  console.log(dataSeries);
+
   const dataCreators = await dataSeries?.creators.items;
   const dataCharacters = await dataSeries?.characters.items;
   const dataStories = await dataSeries?.stories.items;
   const dataComics = await dataSeries?.comics.items;
   const dataEvents = await dataSeries?.events.items;
-  console.log(dataSeries);
+
   //recupere les id creators dans un tableau
   const creatorsId = dataCreators.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);

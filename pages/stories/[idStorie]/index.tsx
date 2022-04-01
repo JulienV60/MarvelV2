@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .db()
     .collection("Stories")
     .findOne({ id: id });
-  console.log(dataStories);
+
   const dataCreators = await dataStories?.creators.items;
   const dataCharacters = await dataStories?.characters.items;
   const dataComics = await dataStories?.comics.items;
