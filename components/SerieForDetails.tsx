@@ -6,6 +6,7 @@ export default function SerieForCharacterDetail(props: any) {
     <div className="col-4">
       <Link href={`/series/${props.id}`}>
         <a>
+          <p>{props.name}</p>
           <img src={`${props.data}`} style={{ maxHeight: "350px" }} />
         </a>
       </Link>

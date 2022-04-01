@@ -83,7 +83,7 @@ export default function Layout({ children }: any) {
               <a>All Characters</a>
             </Link>
 
-            <div className="row">
+            <div className="erow">
               <NavCharacters data={dataCharacters} />
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function Layout({ children }: any) {
             <Link href="/comics?page=1">
               <a>All Comics</a>
             </Link>
-            <div className="row">
+            <div className="erow">
               <NavComics data={dataComics} />
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function Layout({ children }: any) {
             <Link href="/creators?page=1">
               <a>All Creators</a>
             </Link>
-            <div className="row">
+            <div className="erow">
               <NavCreators data={dataCreators} />
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function Layout({ children }: any) {
             <Link href="/events?page=1">
               <a>All Events</a>
             </Link>
-            <div className="row">
+            <div className="erow">
               <NavEvents data={dataEvents} />
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function Layout({ children }: any) {
             <Link href="/series?page=1">
               <a>All Series</a>
             </Link>
-            <div className="row">
+            <div className="erow">
               <NavSeries data={dataSeries} />
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function Layout({ children }: any) {
             <Link href="/stories?page=1">
               <a>All Stories</a>
             </Link>
-            <div className="row">
+            <div className="erow">
               <NavStories data={dataStories} />
             </div>
           </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function CharactersForDetails(props: any) {
   return (
-    <div className="col-2">
+    <div className="col-4">
       <Link href={`/characters/${props.id}`}>
         <a>
           <p>{props.name}</p>

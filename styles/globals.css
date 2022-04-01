@@ -86,7 +86,7 @@ video {
 
 .dropdown-content {
   background-size: 100% 200%;
-  border-radius: 5px;
+
   display: none;
   position: absolute;
   height: 28rem;
@@ -101,20 +101,15 @@ video {
 
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-}
+
 .dropdown-content a {
   color: rgba(238, 23, 31, 1);
+  border-radius: 0.5rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-top: 0.7rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.7rem;
   text-decoration: none;
   display: flex;
 }
@@ -191,12 +186,23 @@ video {
   width: 8rem;
   margin: 1rem 1rem 1rem 1rem;
 }
+.arow h1 {
+  padding-left: 4rem;
+}
+.ecol-3 h1 {
+  text-align: center;
+  padding-right: 4rem;
+}
+.ecol-3 p {
+  text-align: center;
+}
 .col-3 {
   padding: 0;
   padding-left: 0.9rem;
   width: 10rem;
   margin-top: 1rem;
 }
+
 .quatrecentquatre {
   background-image: url(https://64.media.tumblr.com/2233c2134f7b0d7354d5ace4649bfc55/tumblr_o4p5xbS9Un1qdw2puo1_1280.jpg);
   width: auto;
@@ -225,4 +231,93 @@ video {
 .pagination .page-link:hover {
   background-color: rgb(26, 29, 41);
   color: white;
+}
+.econtainer {
+  padding-bottom: 5rem;
+}
+.ecol-md-3 {
+  text-align: center;
+  line-height: 4rem;
+  width: 10rem;
+  height: 10rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.erow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.zrow {
+  padding-right: 2rem;
+  left: 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 0;
+}
+.arow img {
+  padding-top: 2rem;
+}
+
+.creators a {
+  padding-left: 24rem;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.creators img {
+  margin-left: 4rem;
+  width: 16rem;
+}
+.frow {
+  margin-top: 30rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.frow h2 {
+  padding-bottom: 25rem;
+}
+.frow img:hover {
+  border: 0.5rem solid rgba(238, 23, 31, 1);
+  border-radius: 1rem;
+}
+.row img:hover {
+  border: 0.5rem solid rgba(238, 23, 31, 1);
+  border-radius: 1rem;
+}
+.col-4 {
+  width: 25rem;
+}
+.col-4 p {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+.col-2 p {
+  text-decoration: none;
+  color: black;
+  padding-left: 4rem;
+}
+.col-2 {
+  width: 20rem;
+  margin-right: 4rem;
+}
+.col-4 h1 {
+  text-align: center;
 }

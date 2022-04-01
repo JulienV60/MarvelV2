@@ -1,8 +1,10 @@
 import { GetServerSideProps } from "next";
 import CharactersForDetails from "../../../components/CharactersForDetails";
+import ComicsForDetails from "../../../components/ComicsForDetails";
 import CreatorsForDetails from "../../../components/CreatorsForDetails";
 import EventsForDetails from "../../../components/EventForDetails";
 import Layout from "../../../components/Layout";
+import SerieForCharacterDetail from "../../../components/SerieForDetails";
 import StorieForDetails from "../../../components/StorieForDetails";
 import { getDatabase } from "../../../src/database";
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -15,43 +17,40 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .db()
     .collection("Creators")
     .findOne({ id: id });
-  console.log(dataCreator);
-  const dataCreators = await dataCreator?.creators.items;
-  const dataCharacters = await dataCreator?.characters.items;
+  const dataComics = await dataCreator?.comics.items;
+  const dataSeries = await dataCreator?.series.items;
   const dataStories = await dataCreator?.stories.items;
   const dataEvents = await dataCreator?.events.items;
 
-  //recupere les id creators dans un tableau
-  const creatorsId = dataCreators.map((element: any) => {
+  const seriesId = dataSeries.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
   });
 
-  //recuperer les creators du tableau ci dessus en une requete
-  const filteredCreators = creatorsId.filter(function (ele: any, pos: any) {
-    return creatorsId.indexOf(ele) == pos;
+  const filteredSeries = seriesId.filter(function (ele: any, pos: any) {
+    return seriesId.indexOf(ele) == pos;
   });
-  const arrayOfCreators = await mongodb
+
+  const arrayOfSeries = await mongodb
     .db()
-    .collection("Creators")
+    .collection("Comics")
     .find({
-      id: { $in: filteredCreators },
+      id: { $in: filteredSeries },
     })
     .toArray();
-  //recupere les id characters dans un tableau
-  const charactersId = dataCharacters.map((element: any) => {
+
+  const comicsId = dataComics.map((element: any) => {
     return parseInt(element.resourceURI.split("/")[6]);
   });
 
-  //recuperer les characters du tableau ci dessus en une requete
-  const filteredCharacters = charactersId.filter(function (ele: any, pos: any) {
-    return charactersId.indexOf(ele) == pos;
+  const filteredComics = comicsId.filter(function (ele: any, pos: any) {
+    return comicsId.indexOf(ele) == pos;
   });
 
-  const arrayOfCharacters = await mongodb
+  const arrayOfComics = await mongodb
     .db()
-    .collection("Characters")
+    .collection("Comics")
     .find({
-      id: { $in: filteredCharacters },
+      id: { $in: filteredComics },
     })
     .toArray();
 
@@ -90,11 +89,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      dataCreators: JSON.stringify(arrayOfCreators),
-      dataCharac: JSON.stringify(arrayOfCharacters),
+      dataCreators: JSON.stringify(dataCreator),
+      dataSeries: JSON.stringify(arrayOfSeries),
       dataEvents: JSON.stringify(arrayOfEvents),
       dataStories: JSON.stringify(arrayOfStories),
-      dataComics: JSON.stringify(dataCreator),
+      dataComics: JSON.stringify(arrayOfComics),
     },
   };
 };
@@ -104,82 +103,88 @@ export default function CharacterDetails({
   dataCreators,
   dataEvents,
   dataStories,
-  dataCharac,
+  dataSeries,
 }: any): JSX.Element {
-  const dataCharacJSON = JSON.parse(dataCharac);
   const dataComicsJSON = JSON.parse(dataComics);
   const dataCreatorsJSON = JSON.parse(dataCreators);
   const dataEventsJSON = JSON.parse(dataEvents);
   const dataStoriesJSON = JSON.parse(dataStories);
-
+  const dataSeriesJSON = JSON.parse(dataSeries);
   return (
     <Layout>
       <div className="container-fluid">
         <section>
-          <div
-            className="row"
-            style={{ width: "100%", height: "30rem", alignContent: "center" }}
-          >
+          <div className="arow" style={{ width: "100%" }}>
             <div className="col-3 mx-auto">
               <img
-                style={{ width: "400px" }}
-                src={`${dataComicsJSON.thumbnail.path}.${dataComicsJSON.thumbnail.extension}`}
+                style={{ width: "20rem", height: "30rem" }}
+                src={`${dataCreatorsJSON.thumbnail.path}.${dataCreatorsJSON.thumbnail.extension}`}
               />
             </div>
-            <div className="col-4 mx-auto">
-              <h1>{dataComicsJSON.title}</h1>
+            <div className="ecol-3 mx-auto">
+              <h1>{dataCreatorsJSON.fullName}</h1>
+              <p>Work On {dataCreatorsJSON.comics.available} Comics</p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2>Creators :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}></div>
-
-          {dataCreatorsJSON.map((element: any, index: number) => {
-            return (
-              <CreatorsForDetails
-                key={element.title}
-                id={element.id}
-                name={element.fullName}
-                data={`${element.thumbnail.path}.${element.thumbnail.extension}`}
-              />
-            );
-          })}
-        </section>
-        <section>
-          <h2>Charactors :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}></div>
-          {dataCharacJSON.map((element: any, index: number) => {
-            return (
-              <CharactersForDetails
-                key={element.name}
-                id={element.id}
-                name={element.name}
-                data={
-                  `${element.thumbnail.path}`
-                    .split("/")
-                    .includes("image_not_available") === true
-                    ? `${element.thumbnail.path} ="/stock-vector-user-not-available-icon-1038380422.jpeg" `
-                    : `${element.thumbnail.path}.${element.thumbnail.extension}`
-                }
-              />
-            );
-          })}
+          <h2>Comics :</h2>
+          <div className="row overflow-auto">
+            {dataComicsJSON.map((element: any, index: number) => {
+              return (
+                <ComicsForDetails
+                  key={element.title}
+                  id={element.id}
+                  name={element.title}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `/7z6qt753qe031.webp`
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
+                />
+              );
+            })}
+          </div>
         </section>
         <br></br>
         <section>
-          <h2>Stories :</h2>
-          <div className="row overflow-auto" style={{ height: "25rem" }}></div>
-          {dataStoriesJSON.map((element: any, index: number) => {
-            return (
-              <StorieForDetails
-                key={element.title}
-                id={element.id}
-                title={element.title}
-              />
-            );
-          })}
+          <h2>Series :</h2>
+          <div className="row overflow-auto" style={{ height: "28rem" }}>
+            {dataSeriesJSON.map((element: any, index: number) => {
+              return (
+                <SerieForCharacterDetail
+                  key={element.name}
+                  id={element.id}
+                  name={element.title}
+                  data={
+                    `${element.thumbnail.path}`
+                      .split("/")
+                      .includes("image_not_available") === true
+                      ? `/7z6qt753qe031.webp`
+                      : `${element.thumbnail.path}.${element.thumbnail.extension}`
+                  }
+                />
+              );
+            })}
+          </div>
+        </section>
+        <br></br>
+        <section>
+          <h2>Stories:</h2>
+          <div className="row overflow-auto">
+            {dataStoriesJSON.map((element: any, index: number) => {
+              return (
+                <StorieForDetails
+                  key={element.title}
+                  id={element.id}
+                  title={element.title}
+                />
+              );
+            })}
+          </div>
         </section>
         <br></br>
         <section>

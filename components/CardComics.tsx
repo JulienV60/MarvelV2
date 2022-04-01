@@ -19,7 +19,7 @@ export default function CardComics(props: any) {
               ) : (
                 <img
                   className="card-img-top"
-                  style={{ height: "12rem" }}
+                  style={{ height: "14rem" }}
                   src={`${props.imgCard}`}
                 ></img>
               )}
