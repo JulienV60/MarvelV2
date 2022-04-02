@@ -12,6 +12,7 @@
 .imageHome img {
   width: 100%;
 }
+
 a {
   text-decoration: none;
 }
@@ -339,4 +340,93 @@ video {
 }
 .container-fluid h2 {
   color: black;
+}
+@media screen and (max-width: 480px) {
+  .BlockLink video {
+    zoom: normal;
+  }
+  .BlockLink img {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    inset: 0px 0px -1px;
+    z-index: -2;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  .imageHome img {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    inset: 100px 0px -1px;
+    z-index: -2;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  .fakenav {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+  }
+  .dropdown-content {
+    width: 100%;
+    position: absolute;
+  }
+  .dropdown-content .col-3 {
+    width: 7.7rem;
+    padding-right: 0.8rem;
+  }
+  .fakenav {
+    width: 801px;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar {
+    width: 801px;
+    padding: 0;
+    padding-left: 0.5rem;
+  }
+
+  .container-fluid {
+    padding-left: 0;
+    border: none;
+    width: 801px;
+  }
+  .row h1 {
+    margin-top: 1rem;
+    margin-left: 9rem;
+  }
+  .row p {
+    margin-left: 4rem;
+    padding-left: 4rem;
+  }
+  section {
+    padding: 0;
+    margin: 0;
+  }
+  .CircularProgressbar {
+    width: 5rem;
+    height: 8rem;
+  }
+  .arow {
+    padding-right: 11rem;
+  }
+  .arow h1 {
+    padding-left: 15rem;
+  }
+  .arow p {
+    padding-left: 15rem;
+  }
+
+  .arow img {
+    padding-top: 1rem;
+    position: relative;
+    width: 600px;
+    height: 800px;
+    margin: 0;
+  }
 }
